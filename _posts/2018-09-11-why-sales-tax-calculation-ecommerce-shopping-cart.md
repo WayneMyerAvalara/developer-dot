@@ -2,7 +2,7 @@
 layout: post
 title: Why Sales Tax Calculation Is Crucial For Your Ecommerce Shopping Cart
 description: The right sales tax solution will save developers and organizations headaches.
-date: 2018-09-11 16:00
+date: 2018-09-24 16:00
 author: Wayne Myer
 comments: true
 categories: avatax

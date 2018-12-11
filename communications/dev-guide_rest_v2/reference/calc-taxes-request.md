@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.1 - CalcTaxes Request
+title:  Chapter 5.1.1 - CalcTaxes Request
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -83,7 +83,7 @@ At the highest level, a <code>CalcTaxes</code> request is a JSON object comprise
 {% endhighlight %}
 
 <h4 id="note">Note</h4>
-Although the <code>CalcTaxes</code> request gives the user the flexibility to input Override/Safe Harbor Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profile</a> with a custom override file applied. This results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
+Although the <code>CalcTaxes</code> request gives the user the flexibility to input Override/Safe Harbor Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">client profile</a> with a custom override file applied. This results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>

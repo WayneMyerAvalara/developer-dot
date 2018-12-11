@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.21 - Zip Lookup Request
+title:  Chapter 5.3.1 - Zip Lookup Request
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -9,7 +9,7 @@ disqus: 0
 ---
 
 <ul class="pager">
-  <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
+  <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/commit-response/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
   <li class="next"><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-result/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
@@ -93,6 +93,6 @@ The <code>zipLookupRequest</code> object contains the <b>location data</b> used 
 {% endhighlight %}
 
 <ul class="pager">
-  <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
+  <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/commit-response/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
   <li class="next"><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-result/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>

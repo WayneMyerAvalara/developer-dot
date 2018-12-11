@@ -2,16 +2,18 @@
 
 # Quickstart
 
-* To develop on MacOS or Linux
-** `git clone https://github.com/<YOUR_FORK>/developer-dot.git`.
-** Next make sure you have Ruby, RubyGems and Node >= v6.0 installed (see below for details).
-** Run the command `npm install ; bundle install` to install dependencies.
-** Run `npm run build ; bundle exec jekyll serve`.  This launches the site.
-** You should now have the app running on `localhost:4000`, and any changes to site templates or javascript will auto-rebuild the affected pages.
+To develop on MacOS or Linux:
 
-* To develop on windows
-** [Download Docker](https://www.docker.com/community-edition#/download).
-** Once you have Docker installed, `git clone https://github.com/<YOUR_FORK>/developer-dot.git` to clone the repo, then open a command line in the root of the developer-dot directory. Run `npm run docker-build` to build the docker container, and
+* `git clone https://github.com/<YOUR_FORK>/developer-dot.git`.
+* Next make sure you have Ruby, RubyGems and Node >= v6.0 installed (see below for details).
+* Run the command `npm install ; bundle install` to install dependencies.
+* Run `npm run build ; bundle exec jekyll serve`.  This launches the site.
+* You should now have the app running on `localhost:4000`, and any changes to site templates or javascript will auto-rebuild the affected pages.
+
+To develop on windows:
+
+* [Download Docker](https://www.docker.com/community-edition#/download).
+* Once you have Docker installed, `git clone https://github.com/<YOUR_FORK>/developer-dot.git` to clone the repo, then open a command line in the root of the developer-dot directory. Run `npm run docker-build` to build the docker container, and
 then `npm run docker-run` to run the application on port 4000 and listen for any file changes.
 
 # How To Get Started with Avalaras Developer Blog

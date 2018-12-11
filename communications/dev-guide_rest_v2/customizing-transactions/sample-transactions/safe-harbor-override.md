@@ -23,7 +23,7 @@ The Safe Harbor Override allows you to adjust Federal traffic study percentages 
 </ul>
 
 <h4 id="note">Note</h4>
-Although the <code>CalcTaxes</code> request gives the user the flexibility to input Safe Harbor Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profile</a>. Using a client profile results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
+Although the <code>CalcTaxes</code> request gives the user the flexibility to input Safe Harbor Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">client profile</a>. Using a client profile results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
 
 Provide the following information for a Safe Harbor override:
 <ul class="dev-guide-list">

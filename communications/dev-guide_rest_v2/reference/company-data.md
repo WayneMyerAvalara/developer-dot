@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.2 - Company Data
+title:  Chapter 5.1.2 - Company Data
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -79,7 +79,7 @@ The <code>CompanyData</code> object contains information about <b>your</b> compa
         <td><code>excl</code></td>
         <td><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/"><code>[Exclusion]</code></a> Exclusions 
         <br>
-        This is an array of <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a> objects that identify states/provinces/territories where your company is excluded from collecting taxes.  For increased performance, we suggest using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profile</a> with an <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">Exclusion file</a> applied.
+        This is an array of <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a> objects that identify states/provinces/territories where your company is excluded from collecting taxes.  For increased performance, we suggest using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">client profile</a> with an <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">Exclusion file</a> applied.
         </td>
       </tr>
       <tr>

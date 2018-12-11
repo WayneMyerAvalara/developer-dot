@@ -369,7 +369,7 @@ See <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/
     </thead>
     <tbody>
       <tr>
-        <td><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/commit/">DocumentCode</a></td>
+        <td><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/commit/">Document Code</a></td>
         <td><code>doc</code></td>
         <td>Identifies a single or group of transactions, quotes, or invoices in the calling system. This is a user-defined field limited to 150 characters
             <br/>
@@ -379,7 +379,7 @@ See <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/
       <tr>
         <td><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/commit/">Commit</a></td>
         <td><code>cmmt</code></td>
-        <td>Specifies if the DocumentCode should be committed as soon as the tax calculation is processed
+        <td>Specifies if the Document Code should be committed as soon as the tax calculation is processed
             <ul class="dev-guide-list">
                 <li>If <b>Document Code</b> is provided but <b>Commit</b> is <code>null</code>, <b>Commit</b> is set to <code>false</code></li>
                 <li>If <b>Commit</b> is <code>true</code>, <b>Document Code</b> must be set</li>

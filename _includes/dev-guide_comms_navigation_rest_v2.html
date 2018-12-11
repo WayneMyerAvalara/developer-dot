@@ -7,6 +7,7 @@
                 <li><a href="/communications/dev-guide_rest_v2/getting-started/account-creation/">Account Creation</a></li>
                 <li><a href="/communications/dev-guide_rest_v2/getting-started/authentication/">Authentication</a></li>
                 <li><a href="/communications/dev-guide_rest_v2/getting-started/environments-endpoints/">Environments and Endpoints</a></li>
+                <li><a href="/communications/dev-guide_rest_v2/getting-started/demo-app/">Demo Application</a></li>
                 <li><a href="/communications/dev-guide_rest_v2/getting-started/best-practices/">Best Practices</a></li>
             </ol>
             {% endif %}
@@ -30,12 +31,17 @@
             <ol>
                 <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profiles</a></li>
                 <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">Account Customizations</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/transaction-use-cases/">Transaction Use Cases</a></li>
+                <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/transaction-use-cases/">Transaction Use Cases</a>
                     <ol>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/simple-request/">Simple Request</a></li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/multi-line-request/">Multi-line Request</a></li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/jurisdiction-determination/">Jurisdiction Determination</a></li>
-                        <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exemption/">Exemptions</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exemption/">Exemptions</a>
+                        <ol>
+                            <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/category-exemption/">Category Exemptions</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-type-exemption/">Tax Type Exemptions</a></li>
+                        </ol>
+                        </li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/inter-intrastate/">Interstate/Intrastate Determination</a></li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-override/">Tax Override</a></li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/safe-harbor-override/">Safe Harbor Override</a></li>
@@ -52,38 +58,67 @@
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-inclusive/">Tax Inclusive</a></li>
                         <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/displaying-tax-results/">Displaying Tax Results</a></li>
                     </ol>
+                </li>
+                <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/jurisdiction-determination-use-cases/">Jurisdiction Determination Use Cases</a>
+                    <ol>
+                        <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/pcode-jurisdiction-determination/">PCode</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/geocode-jurisdiction-determination/">Geocode</a></li>
+                    </ol>
+                </li>
             </ol>
             {% endif %}
         </li>
         <li {% if page.url=="/communications/dev-guide_rest_v2/reference/" %}class="active" {% endif %}><a href="/communications/dev-guide_rest_v2/reference/">Reference</a>
             {% if page.chapter=="reference" %}
             <ol>
-                <li><a href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes Request</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/company-data/">Company Data</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/location/">Location</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/line-item/">Line Item</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/tax-override/">Tax Override</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/safe-harbor-override/">Safe Harbor Override</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/exemption/">Exemption</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/tax-bracket/">Tax Bracket</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/bridge-data/">Bridge Data</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/bridge-participant/">Bridge Participant</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/key-value-pair/">Key Value Pair</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/">CalcTaxes Response</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/invoice-result/">Invoice Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/error-response/">Error Response</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/line-item-result/">Line Item Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">Detailed Tax Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/bridge-participant-result/">Bridge Participant Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">Summarized Tax Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-request/">Zip Lookup Request</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-result/">Zip Lookup Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/location-item/">Location Item</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/geocode-requests/">Geocode Requests</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/geocode-result/">Geocode Result</a></li>
-                <li><a href="/communications/dev-guide_rest_v2/reference/address/">Address</a></li>
+                <li>Calculate Taxes
+                    <ol>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes Request</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/company-data/">Company Data</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/location/">Location</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/line-item/">Line Item</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/tax-override/">Tax Override</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/safe-harbor-override/">Safe Harbor Override</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/exemption/">Exemption</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/tax-bracket/">Tax Bracket</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/bridge-data/">Bridge Data</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/bridge-participant/">Bridge Participant</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/key-value-pair/">Key Value Pair</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/">CalcTaxes Response</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/invoice-result/">Invoice Result</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/error-response/">Error Response</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/line-item-result/">Line Item Result</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">Detailed Tax Result</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/bridge-participant-result/">Bridge Participant Result</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">Summarized Tax Result</a></li>
+                    </ol>
+                </li>
+                <li>Commit
+                    <ol>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/commit-request/">Commit Request</a></li>
+                        <li><a href="/communications/dev-guide_rest_v2/reference/commit-response/">Commit Response</a></li>
+                    </ol>
+                </li>
+                <li>Jurisdiction Determination
+                    <ol>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-request/">Zip Lookup Request</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-result/">Zip Lookup Result</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/location-item/">Location Item</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/geocode-requests/">Geocode Requests</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/geocode-result/">Geocode Result</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/address/">Address</a></li>
+                    </ol>
+                </li>
+                <li>Lookups
+                    <ol>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/service-info/">Service Info</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/version-info/">Version Info</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/tax-type-data/">Tax Type Data</a></li>
+                            <li><a href="/communications/dev-guide_rest_v2/reference/ts-pair-data/">TS Pair Data</a></li>
+                    </ol>
+                </li>
             </ol>
             {% endif %}
         </li>

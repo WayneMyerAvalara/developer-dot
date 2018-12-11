@@ -46,7 +46,7 @@ These items must appear in your request header:
 
 The <code>api_key</code> is your Customer Portal "username:password" encoded in Base64.  For example, if your username is <code>first.last@avalara.com</code> and your password is <code>secretpassword!</code>, your <code>api_key</code> is <code>Zmlyc3QubGFzdEBhdmFsYXJhLmNvbTpzZWNyZXRwYXNzd29yZCE=</code>.
 
-The <a class="dev-guide-link" href="https://communications.avalara.net/API/AFCSaaSProTaxREST">Communications REST v2 Swagger page</a> automatically generates your api_key for you.  To generate the api_key on the <a class="dev-guide-link" href="https://communications.avalara.net/API/AFCSaaSProTaxREST">Swagger</a> page:
+The <a class="dev-guide-link" href="https://communications.avalara.net/API/AFCSaaSProTax">Communications REST v2 Swagger page</a> automatically generates your api_key for you.  To generate the api_key on the <a class="dev-guide-link" href="https://communications.avalara.net/API/AFCSaaSProTaxREST">Swagger</a> page:
 <ol class="dev-guide-list">
   <li>Enter your username in the <code>email address</code> field.</li>
   <li>Enter your password in the <code>password</code> field.</li>
@@ -70,7 +70,7 @@ You can also encode a plaintext string to Base64 in <b>Windows Powershell</b> us
 
 <h3>Optional Headers</h3>
 
-Our tax engine allows for additional customization when calculating taxes through <b>Client Profiles</b>. For details about how Client Profiles work, see <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/">Customizing Transactions</a>.  For now, just know that you can pass an additional header to use a specific profile:
+Our tax engine allows for additional customization when calculating taxes through <b>client profiles</b>. For details about how client profiles work, see <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/">Customizing Transactions</a>.  For now, just know that you can pass an additional header to use a specific profile:
 
 <div class="mobile-table">
   <table class="styled-table">

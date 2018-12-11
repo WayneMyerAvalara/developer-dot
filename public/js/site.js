@@ -1,3 +1,5 @@
+var isIntlTransaction = false;
+
 var fixApiRefNav = function() {
     if ($('#the-nav li').length >= 22) {
         $('#the-nav').data('offset-bottom', '160');
@@ -31,44 +33,95 @@ function getCompareDate() {
 
 // HELPER: build lines with correct template for given language
 function lineBuilder(reqType) {
-    let lines = reqType === 'JSON' ? [] : ``;
-    
+    let lines = reqType === 'JSON' || 'JS' ? [] : ``;
+    let hsCode = '';
+    let mass = '';
+    let unit = '';
     let lineNum = 1;
-    const allProducts = $('input[type=checkbox][name=product]:checked');
-    
+    const allProducts = $('input[type=checkbox][name=product]:checked');   
+
     // build line for each selected products
     allProducts.each(function () {
         const taxCode = $(this).val();
         const amount = $('#' + $(this).attr('id') + '-amount').val();
         const description = $(this).attr('description');
 
+        // If this is an international transaction, get the appropriate HS Code
+        // for the destination country.
+        if(isIntlTransaction) {
+            let destCountry = $('input[type=radio][name=address]:checked')[0].attributes['country'].value;
+            hsCode = $(this).attr('hsCodeTo'+ destCountry);
+            mass = $(this).attr('mass');
+            unit = $(this).attr('unit');
+        }
+
         // pick the correct line template
         switch (reqType) {
             case 'JSON':
-                lines.push({
+            case 'JS':
+                let o ={
                     "number": lineNum,
                     "amount": amount,
                     "taxCode": taxCode,
-                    "description": description
-                });
-                break;
-            case 'JS':
-            case 'Ruby':
+                    "description": description                    
+                };
+                
+                // Add HS Code if applicable.
+                if (hsCode.length) {
+                    Object.assign(o, {
+                        "hsCode": hsCode
+                    });
+                }
+
+                // Add Mass and UOM if applicable.
+                if (mass.length && unit.length) {
+                    o["parameters"] = {
+                        "Mass": mass,
+                        "Mass.UOM": unit
+                    };
+                }
+
+                lines.push(o);
+                break;           
+            case 'Ruby':            
                 lines += `{
             amount: "${amount}",
             description: "${description}",
             number: "${lineNum}",
-            taxCode: "${taxCode}"
+            taxCode: "${taxCode}"`;
+                lines += hsCode.length ? "," : "";
+                lines += hsCode.length ? `
+            hsCode: "${hsCode}"` : "" 
+                lines += (mass.length && unit.length) ? "," : "";
+                lines += (mass.length && unit.length) ?
+                `   
+            parameters: {
+                Mass: "${mass}",
+                Mass.UOM: "${unit}"
+            }` : "";                    
+                lines += `
         }`;
-                if (lineNum !== allProducts.length) lines += ',\n        ';
+                if (lineNum !== allProducts.length) lines += ',\n        ';                
                 break;
             case 'Python':
                 lines += `{
             'amount': '${amount}',
             'description': '${description}',
             'number': '${lineNum}',
-            'taxCode': '${taxCode}'
+            'taxCode': '${taxCode}'`;
+                    lines += hsCode.length ? "," : "";
+                    lines += hsCode.length ? `
+            'hsCode': '${hsCode}'` : "" 
+            lines += (mass.length && unit.length) ? "," : "";
+            lines += (mass.length && unit.length) ?
+            `   
+            'parameters': {
+                'Mass': '${mass}',
+                'Mass.UOM': '${unit}'
+            }` : "";                    
+        lines += `
         }`;
+        
                 if (lineNum !== allProducts.length) lines += ',\n        ';
                 break;
             case 'C#':
@@ -77,16 +130,32 @@ function lineBuilder(reqType) {
             number = ${lineNum},
             quantity = 1,
             amount = ${amount},
-            taxCode = "${taxCode}"
+            taxCode = "${taxCode}"`;
+                    lines += hsCode.length ? "," : "";
+                    lines += hsCode.length ? `
+            hsCode: "${hsCode}"` : "" 
+                    lines += (mass.length && unit.length) ? "," : "";
+                    lines += (mass.length && unit.length) ?
+                `   
+            parameters: {
+                Mass: "${mass}",
+                Mass.UOM: "${unit}"
+            }` : "";                                    
+                if (lineNum !== allProducts.length) lines += ',\n        ';
+                    
+                lines += `
         }`;                
                 if (lineNum !== allProducts.length) lines += ',\n        ';
                 break;
             case 'PHP':
                 lines += `->withLine(${amount}, ${lineNum}, null, ${taxCode})`; 
+
                 if (lineNum !== allProducts.length) lines += '\n    ';
                 break;
             case 'Java':
                 lines += `.withLine(new BigDecimal(${amount}), new BigDecimal(${lineNum}), "${taxCode}")`; 
+                lines += (mass.length && unit.length) ? 
+                `\n    .withLineParameter("Mass", "${mass}")\n    .withLineParameter("Mass.UOM", "${unit}")` : ``;
                 if (lineNum !== allProducts.length) lines += '\n    ';
                 break;
             default:
@@ -97,6 +166,10 @@ function lineBuilder(reqType) {
     });
 
     return lines;
+}
+
+function lanaugeSpecificLineBuilder(indent, indented, aWrap, vWrap, assignment, objToTranslate) {
+
 }
 
 // HELPER: build address with correct template for given language
@@ -158,6 +231,9 @@ function addressBuilder(reqType, addressName, prefix) {
 // HELPER: check if shipFrom address is selected
 function shipFromChecked() {
     const checked = $('input[type=radio][name=srcAddress]:checked').length > 0;
+    isIntlTransaction = checked && 
+        ($('input[type=radio][name=srcAddress]:checked')[0].attributes['country'].value != 
+            $('input[type=radio][name=address]:checked')[0].attributes['country'].value);
     return checked;
 }
 
@@ -187,12 +263,17 @@ function jsonSampleData() {
         "lines": lineBuilder('JSON'),
         "type": "SalesOrder",
         "companyCode": "DEMOPAGE",
-        "date": today.toISOString().split('T')[0],
+        "date": today.toISOString().split('T')[0], 
         "customerCode": "ABC",
         "addresses": address
     };
 
-    sampleData.lines = lineBuilder('JSON');
+    //Add DDP if the transaction is cross-border.
+    if(isIntlTransaction) {
+        sampleData["isSellerImporterOfRecord"] = true;
+    }
+
+    //sampleData.lines = lineBuilder('JSON');
 
     return sampleData;
 }
@@ -235,9 +316,9 @@ var client = new AvaTaxClient("MyTestApp", "1.0", Environment.MachineName, AvaTa
 var createModel = new CreateTransactionModel()
 {
     type = DocumentType.SalesOrder,
-    companyCode = "DEMOPAGE",
+    companyCode = "DEMOPAGE",${isIntlTransaction ? `\n    isSellerImporterOfRecord: true,`:``}
     date = DateTime.Today,
-    customerCode = "ABC",
+    customerCode = "ABC", 
     lines = new List<LineItemModel>() 
     {
         ${lines}
@@ -313,8 +394,8 @@ client = client.add_credentials('USERNAME/ACCOUNT_ID', 'PASSWORD/LICENSE_KEY')
 tax_document = {
     'addresses': {
         ${address}
-    },
-    'companyCode': 'DEMO PAGE',
+    },     
+    'companyCode': 'DEMO PAGE', ${isIntlTransaction ? `\n    'isSellerImporterOfRecord': 'true',`:``}
     'customerCode': 'ABC',
     'date': '2017-04-12',
     'lines': [
@@ -366,7 +447,7 @@ createTransactionModel = {
     type: "SalesOrder",
     companyCode: "12670",
     date: "2017-06-05",
-    customerCode: "ABC",
+    customerCode: "ABC", ${isIntlTransaction ? `\n    isSellerImporterOfRecord: "true",`:``}
     addresses: {
        ${address} 
     },
@@ -412,6 +493,7 @@ function javascriptSampleData() {
     const lines = lineBuilder('JS');
     const shipFromSelected = shipFromChecked(); 
     const shipToAddress = addressBuilder('Ruby', 'address');
+    let today = new Date();
     let address;
   
     if (shipFromSelected) {
@@ -423,12 +505,14 @@ function javascriptSampleData() {
         address = `SingleLocation: ${shipToAddress}`;
     }
 
-    const sampleData = `const config = {
-    appName: "your-app",
-    appVersion: "1.0",
-    environment: "sandbox",
-    machineName: "your-machine-name"
-};
+    let config = {
+        appName: "your-app",
+        appVersion: "1.0",
+        environment: "sandbox",
+        machineName: "your-machine-name"
+    };
+
+    const sampleData = `const config = ${JSON.stringify(config, null, 4)};
     
 const creds = {
     username: "<your-username>",
@@ -440,14 +524,13 @@ var client = new Avatax(config).withSecurity(creds);
 const taxDocument = {
     type: "SalesOrder",
     companyCode: "abc123",
-    date: "2017-04-12",
-    customerCode: "ABC",
+    date: ${today.toISOString().split('T')[0]},
+    customerCode: "ABC", ${isIntlTransaction ? `\n    isSellerImporterOfRecord: "true",`:``}
     addresses: {
         ${address}
     },
-    lines: [
-        ${lines}
-    ],
+    lines: 
+        ${JSON.stringify(lines, null, 4)}
 }
     
 return client.createTransaction({ model: taxDocument })
@@ -458,6 +541,8 @@ return client.createTransaction({ model: taxDocument })
 
     return sampleData
 }
+
+
 
 //
 // MAIN Sample Data function: populates request console

@@ -4,6 +4,7 @@ const NUMAPIS = 3;
 let expectedNumberOfApiEndpoints;
 let navigationBar;
 
+
 module.exports = {
     'before': function(browser) {
         browser.maximizeWindow();
@@ -46,7 +47,7 @@ module.exports = {
     'API Reference: AvaTax: REST v2 (verify number of endpoints)': function(browser) {
         // NOTE: THESE NOW ALL EXIST ON SUB 'TAG' PAGES
 
-        expectedNumberOfApiEndpoints = 39;
+        expectedNumberOfApiEndpoints = 40;
         const expectedNumberOfSubTags = 7;
 
         const expectedRequest = {accountId: 123456789, confirmResetLicenseKey: true};
@@ -67,22 +68,6 @@ module.exports = {
         // navbar for v2 has one extra assertion
         navigationBar
             .assert.elementNumTimes('@subtags', expectedNumberOfSubTags, 'navigationBar');
-    },
-    'API Reference: AvaTax: REST v2 - API Console for ResolveAddressPost': function(browser) {
-        const expectedResponse = {address: {textCase: 'Upper', line1: '2000 Main Street', city: 'Irvine', region: 'CA', country: 'US', postalCode: '92614'}};
-
-        browser
-            .initialize(browser.globals.baseURL + '/api-reference/avatax/rest/v2/methods/Addresses/ResolveAddressPost/');
-
-        browser.page.endpointSummary()
-            .navigateTo('#ResolveAddressPost-console')
-            .navigateTo('#ResolveAddressPost-console-body .fill-sample-data')
-            .click('#ResolveAddressPost-console-body .submit')
-
-            .getConsoleText('ResolveAddressPost', 'responseConsole', function(res) {
-                browser.assert.ok(deepEqual(res.address, expectedResponse.address),
-                    "response for 'try it now' matches expected response");
-            });
     },
     'API Reference: AvaTax: SOAP (verify number of endpoints)': function(browser) {
         expectedNumberOfApiEndpoints = 15;

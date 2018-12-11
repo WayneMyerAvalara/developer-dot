@@ -14,25 +14,36 @@ disqus: 0
 </ul>
 
 <h3>What is a client profile?</h3>
-Client profiles provide a way to customize how the AFC tax engine interprets a transaction request and returns the tax results.  There can be multiple client profiles associated to a client.  These customizations include overrides, bundles, exclusions, exemptions, and a few configurations for how tax data is returned.
-
-<h3>Why use client profile?</h3>
-There are a few reasons to use client profiles:
+A client profile allows you to customize how the AFC tax engine interprets a request and returns tax results.  <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">Customizations</a> include: 
 <ul class="dev-guide-list">
-  <li>Profiles are cached - this speeds up the response times on requests</li>
-  <li>The use of profiles eliminates the need to apply the same override, exclusion, exemption, etc. with each request.  Some of the customizations contained within a client profile, such as an override, can be done within an individual transaction request.  However, instead of adding the same override, exclusion, or exemption to each line, a customization file can be added to your client ID as a profile.  When the profile is <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">specified in the header</a> with <code>client_profile_id</code>, the overrides, exclusions, exemptions, and bundles are automatically be applied to all transactions run using that header.</li>
-  <li>Multiple profiles can be created for your client ID, meaning that multiple scenarios can be created and utilized.  Examples uses for multiple profiles include:
+  <li>Bundle</li>
+  <li>Exclusion</li>
+  <li>Exemption</li>
+  <li>Tax Override</li>
+  <li>AFC Tax Engine configuration</li>
+</ul>
+
+<h3>Why use a client profile?</h3>
+Reasons to use a client profile include:
+<ul class="dev-guide-list">
+  <li>Profiles are cached - this speeds up response times</li>
+  <li>Using a client profile eliminates including the same customization, such as a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-override/">tax override</a>,  in each <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes request</a></li>
+  <ol class="dev-guide-list">
+    <li><a class="dev-guide-link" href="#request">Request</a> a client profile containing <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">customization file(s) and configurations</a> be added to your client</li>
+    <li>Specify the <code>client_profile_id</code> in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">header</a> to apply the client profile to all requests run using that header</li>
+  </ol>
+  <li>Multiple profiles can be applied to your client ID.  Examples uses for multiple profiles include:
     <ul class="dev-guide-list">
-      <li>Separate configurations for different aspects of your business</li>
-      <li>Separate configurations for sub companies</li>
-      <li>Testing proposed configurations</li>
+      <li>Separate configurations for different different types of transactions</li>
+      <li>Separate configurations for child companies</li>
+      <li>Testing new configurations</li>
     </ul></li>
 
 <h3>How to apply a client profile to a session</h3>
-When <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">authenticating</a> to REST v2, pass the desired client profile ID in the <code>client_profile_id</code> header field.
+When <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">authenticating</a> to Communications REST v2, pass the client profile ID in the header using <code>client_profile_id</code>.
 
 <h4>Postman example</h4>
-Add the following <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">headers</a> to your request:
+Add these <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">headers</a> to your request:
 <ul class="dev-guide-list">
   <li><code>api_key</code></li>
   <li><code>client_id</code></li>
@@ -42,25 +53,32 @@ Add the following <a class="dev-guide-link" href="/communications/dev-guide_rest
 <img src="/public/images/comms/dev-guide_rest_v2/comms_dev_guide_2.png"/>
 
 <h3>How to run transactions without a profile</h3>
-If a profile is not specified, REST v2 uses the System Default configuration.
+REST v2 uses the system default profile when a profile is not specified.
 
-There are two ways to send send a transaction to AFC Rest v2 without a client profile applied:
+To send a transaction without a client profile, modify the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">header</a> using one of these options:
 <ul class="dev-guide-list">
-  <li>Do not include <code>client_profile_id</code> from the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">header</a>.  <code>client_profile_id</code> is an optional header field</li> 
-  <li>Set <code>client_profile_id</code> to 0 in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/authentication/">header</a></li>
+  <li>Do not include <code>client_profile_id</code></li> 
+  <li>Set <code>client_profile_id</code> to "0"</li>
 </ul> 
+<h4>Note</h4>
+<a class="dev-guide-link" href="/communications/dev-guide_rest_v2/getting-started/best-practices/#flexibility">We recommend</a> including <code>client_profile_id</code>, and setting the field to "0", in the header even if you are not using client profiles.
 
-<h3>How to request a new client profile or changes to an existing client profile</h3>
-Contact <a class="dev-guide-link" href="mailto:CommunicationSupport@avalara.com">CommunicationSupport@avalara.com</a> to request a new client profile for your account.
-<ul class="dev-guide-list">
-  <li>Request the configuration changes required and any overrides, exclusions, exemptions, or bundles needed.  If you already have <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">customization files</a>, attach those files to the email.</li>
-  <li>Include instructions as to whether the files should be applied to the Sandbox, Production, or both environments.</li>
-  <li>If changes are needed to an existing client profile, include the <code>client_profile_id</code> to be updated.</li>
-  <li>Once applied, the account could take up to 24 hours to refresh with the new changes.</li>
-</ul>
+<h3 id="request">Requesting a new client profile or changes to an existing client profile</h3>
+Contact <a class="dev-guide-link" href="mailto:CommunicationSupport@avalara.com">CommunicationSupport@avalara.com</a>:
+<ol class="dev-guide-list">
+  <li>Request the customization files and configurations.  Attach existing <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">customization files</a> to the email</li>
+  <li>Include the environment(s)</li>
+  <ul class="dev-guide-list">
+    <li><a class="dev-guide-link" href="https://communicationsua.avalara.net">Sandbox</a></li>
+    <li><a class="dev-guide-link" href="https://communications.avalara.net">Production</a></li>
+    <li>Both environments</li>
+  </ul>
+  <li>Include the <code>client_profile_id</code> to be updated if changes are needed to an existing client profile</li>
+  <li>The client profiles could take up to 24 hours to become available once applied</li>
+</ol>
 
 <h4>Note</h4>
-Client profiles are numbered in sequential order, starting with <code>client_profile_id</code> "1".  By default, the System Default profile is "0".
+The system default profile is "0".  Custom client profiles are numbered in sequential order, starting with <code>client_profile_id</code> "1".  
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/customizing-transactions/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>

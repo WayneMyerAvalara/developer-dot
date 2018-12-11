@@ -1,30 +1,78 @@
-- name: Widget
-  taxCode: P0000000
+- name: Chocolate
+  taxCode: PF050099
   inputId: p1c
-  value: 100.00
-  subLabel: (an item not otherwise classified; taxed as tangible personal property)
+  value: 900.00
+  mass: 2.5
+  unit: Kilogram
   checked: checked
+  hsCodeToUs: 1806101500
+  hsCodeToBr: 18062000
+  hsCodeToUk: 1806201090
+  hsCodeToIn: 18062000
+  isPhysical: true
 - name: Pre-packaged Sushi
   taxCode: PF160024
   inputId: p2c
   value: 15.99
+  mass: 
+  unit: 
+  hsCodeToUs: 1604204000
+  hsCodeToBr: 16041100
+  hsCodeToUk: 1604209011
+  hsCodeToIn: 16041100
+  isPhysical: true
 - name: MP3 download
   taxCode: DM040200
   inputId: p3c
   value: 0.99
+  mass: 
+  unit:
+  hsCodeToUs: 
+  hsCodeToBr: 
+  hsCodeToUk: 
+  hsCodeToIn: 
+  isPhysical: false
 - name: Baseball Bat
   taxCode: PC040400
   inputId: p4c
   value: 40.21
+  mass: 
+  unit:
+  hsCodeToUs: 9506996080
+  hsCodeToBr: 95069100
+  hsCodeToUk: 9506919000
+  hsCodeToIn: 95069190
+  isPhysical: true
 - name: Color Laser Printer
   taxCode: PC070400
   inputId: p5c
   value: 199.00
+  mass: 
+  unit:
+  hsCodeToUs: 8521900000
+  hsCodeToBr: 85219090
+  hsCodeToUk: 8521900090
+  hsCodeToIn: 85219090
+  isPhysical: true
 - name: Oil change service (with synthetic oil)
   taxCode: SA090700
   inputId: p6c
   value: 89.99
+  mass: 
+  unit:
+  hsCodeToUs: 
+  hsCodeToBr: 
+  hsCodeToUk: 
+  hsCodeToIn: 
+  isPhysical: false
 - name: Shipping
   taxCode: FR010000
   inputId: p7c
   value: 19.99
+  mass: 
+  unit:
+  hsCodeToUs: 
+  hsCodeToBr: 
+  hsCodeToUk: 
+  hsCodeToIn: 
+  isPhysical: false

@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.16 - Error Response
+title:  Chapter 5.1.16 - Error Response
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

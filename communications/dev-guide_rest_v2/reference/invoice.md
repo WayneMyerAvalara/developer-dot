@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.3 - Invoice
+title:  Chapter 5.1.3 - Invoice
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

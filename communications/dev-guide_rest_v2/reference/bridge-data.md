@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.11 - Bridge Data
+title:  Chapter 5.1.11 - Bridge Data
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

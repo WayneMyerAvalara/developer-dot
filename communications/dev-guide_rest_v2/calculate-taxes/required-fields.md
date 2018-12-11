@@ -13,10 +13,10 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/commit-uncommit/">Next Chapter<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes request</a> has numerous fields, but only a handful of the fields are required by Communications REST v2.  
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes request</a> has numerous fields, but only a handful of the objects and fields are required by Communications REST v2.  
 
 <h3>CompanyData</h3>
-These fields are required in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/company-data/">Company Data</a> object (<code>cmpn</code>):
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/company-data/">Company Data</a> object (<code>cmpn</code>) is required.  These fields are required in CompanyData:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -51,7 +51,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h4>Exclusion</h4>
-The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a> object (<code>excl</code>) is not required.  If you do use the Exclusion object, these fields are required:
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a> object (<code>excl</code>) is <i>not</i> required.  If you do use the Exclusion object, these fields are required:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -78,7 +78,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h3>Invoice</h3>
-These fields are required in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a> object (<code>inv</code>):
+At least 1 instance of the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a> object (<code>inv</code>) is required.  These fields are required in Invoice:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -120,7 +120,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h4 id="line-item">Line Item</h4>
-These fields are required in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">LineItem</a> object (<code>itms</code>):
+At least 1 instance of the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">LineItem</a> object (<code>itms</code>) is required in each <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a> object (<code>inv</code>).  These fields are required in LineItem:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -151,7 +151,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h4>Exemption</h4>
-The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exemption/">Exemption</a> object (<code>exms</code>) is not required.  If you do use the Exemption object, these fields are required:
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exemption/">Exemption</a> object (<code>exms</code>) is <i>not</i> required.  If you do use the Exemption object, these fields are required:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -202,7 +202,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h3>Tax Override</h3>
-The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-override/">TaxOverride</a> object (<code>ovr</code>) is not required.  If you do use the Tax Override object, these fields are required:
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-override/">TaxOverride</a> object (<code>ovr</code>) is <i>not</i> required.  If you do use the Tax Override object, these fields are required:
 
 <div class="mobile-table">
   <table class="styled-table">
@@ -268,7 +268,7 @@ For more information, see <a class="dev-guide-link" href="/communications/dev-gu
 <br/>
 <br/>
 <h3>Safe Harbor Override</h3>
-The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/safe-harbor-override/">SafeHarborOverride</a> object (<code>sovr</code>) is not required.  If you do use the Safe Harbor Override object, these fields are required:
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/safe-harbor-override/">SafeHarborOverride</a> object (<code>sovr</code>) is <i>not</i> required.  If you do use the Safe Harbor Override object, these fields are required:
 
 <div class="mobile-table">
   <table class="styled-table">

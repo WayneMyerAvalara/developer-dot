@@ -13,29 +13,31 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/simple-request">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-Below are a number of use cases that show the different aspects of customizing a <code>CalcTaxes</code> request.  These examples are just a starting point and can be combined and tweaked to meet most situations.  For further assistance, contact <a class="dev-guide-link" href="mailto:CommunicationSupport@avalara.com">CommunicationSupport@avalara.com</a>.
+This section contains number of use cases that demonstrate the customization of a <code>CalcTaxes</code> request.  These examples are a starting point - combine and tweak them to match your scenarios.  
 
-The following use cases are provided:
+Request objects used in the transaction use cases:
 <ul class="dev-guide-list">
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/simple-request/">Simple Request</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/multi-line-request/">Multi-line Request</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/jurisdiction-determination/">Jurisdiction Determination</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exemption/">Exemptions</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/inter-intrastate/">Interstate/Intrastate Determination</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-override/">Tax Override</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/safe-harbor-override/">Safe Harbor Override</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/sau/">Sales and Use</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/private-line/">Private Line</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/proration/">Proration</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/transaction-information/">Transaction Information</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exclusion/">Exclusions</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/commit/">Transaction-Level Commit/Uncommit</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/invoice-date/">Invoice Date</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/invoice-mode/">Invoice Mode</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/optional-fields/">Optional Fields</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/adjustment/">Adjustments</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/tax-inclusive/">Tax Inclusive</a></li>
-    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/displaying-tax-results/">Displaying Tax Results</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/">CalcTaxes Request</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/company-data/">Company Data</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">Location</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">Line Item</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-override/">Tax Override</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/safe-harbor-override/">Safe Harbor Override</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exclusion/">Exclusion</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/exemption/">Exemption</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-bracket/">Tax Bracket</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/key-value-pair/">Key Value Pair</a></li>
+</ul>
+
+Response objects used in the transaction use cases:
+<ul class="dev-guide-list">
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/">CalcTaxes Response</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice-result/">Invoice Result</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/error-response/">Error Response</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item-result/">Line Item Result</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">Detailed Tax Result</a></li>
+    <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">Summarized Tax Result</a></li>
 </ul>
 
 <ul class="pager">

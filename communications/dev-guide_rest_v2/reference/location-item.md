@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.23 - Location Item
+title:  Chapter 5.3.3 - Location Item
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

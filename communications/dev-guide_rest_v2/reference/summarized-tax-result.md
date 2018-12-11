@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.20 - Summarized Tax Result
+title:  Chapter 5.1.20 - Summarized Tax Result
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -10,7 +10,7 @@ disqus: 0
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/bridge-participant-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
-  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-request/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/commit-request/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
 <h3>Summarized Tax Result</h3>
@@ -155,5 +155,5 @@ The <code>SummarizedTax</code> object contains the <b>tax data</b> for summarize
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/bridge-participant-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
-  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/zip-lookup-request/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/commit-request/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>

@@ -30,7 +30,7 @@ Add these <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/gett
 <img src="/public/images/comms/dev-guide_rest_v2/comms_dev_guide_1.png"/>
 
 <h3>Body</h3>
-For the body of the <code>POST</code> request, copy and paste the following example:
+For the body of the <code>POST</code> request, copy and paste this example:
 
 {% highlight json %}
 {
@@ -43,7 +43,7 @@ For the body of the <code>POST</code> request, copy and paste the following exam
   },
   "inv": [
     {
-      "doc": "DocumentXYZ123",
+      "doc": "DocumentCode12345",
       "bill": {
         "ctry": "USA",
         "st": "NC",
@@ -73,8 +73,8 @@ For the body of the <code>POST</code> request, copy and paste the following exam
   <li>Your <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/company-data/">company</a> details (<code>cmpn</code>)</li>
   <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a> (<code>inv</code>) details</li>
     <ul class="dev-guide-list">
-      <li>DocumentCode (<code>doc</code>) is included so we can <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/">commit</a> this transaction later</li>
-      <li>The Commit flag (<code>cmmt</code>) is set to <code>false</code>.  If you want to <a class="dev-guide-link"  href="/communications/dev-guide_rest_v2/commit-uncommit/">commit</a> immediately, set the Commit flag to <code>true</code> in the transaction.</li>
+      <li>Document Code (<code>doc</code>) is included so we can <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/commit-request/">commit</a> this transaction later</li>
+      <li>The Commit flag (<code>cmmt</code>) is set to <code>false</code>.  If you want to <a class="dev-guide-link"  href="/communications/dev-guide_rest_v2/commit-uncommit/">commit</a> immediately, set the Commit flag to <code>true</code> in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a>.</li>
       <li>BillTo (<code>bill</code>) is a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">Location</a> object and is specified in different ways. We pass a combination of Country (<code>ctry</code>), City(<code>city</code>), State (<code>st</code>), and Postal Code (<code>zip</code>), but we can also pass a single PCode (<code>pcd</code>), FIPS (<code>fips</code>), or NPANXX (<code>npa</code>) value.</li>
     </ul>
   <li>The value you assign to the <code>date</code> key is important because it affects which rules are used by our tax engine to calculate taxes. Tax rules change frequently, and our Content Team continuously updates our tax engine to reflect these changes.</li>
@@ -83,13 +83,13 @@ For the body of the <code>POST</code> request, copy and paste the following exam
 
 
 <h3>Response</h3>
-The response contains a list of <a class="dev-guide-link"  href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">detailed tax amounts</a> (<code>txs</code>):
+The <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/">CalcTaxes response</a> contains a list of <a class="dev-guide-link"  href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">detailed tax amounts</a> (<code>txs</code>):
 
 {% highlight json %}
 {
     "inv": [
         {
-            "doc": "DocumentXYZ123",
+            "doc": "DocumentCode12345",
             "itms": [
                 {
                     "txs": [
@@ -155,7 +155,7 @@ The response contains a list of <a class="dev-guide-link"  href="/communications
 }
 {% endhighlight %}
 
-Each tax amount returned contains additional information including:
+Each detailed tax record returned contains additional information including:
 <ul class="dev-guide-list">
   <li><code>bill</code>: Is the tax <i>billable</i>? Or, can this tax be passed on to the end-customer?</li>
   <li><code>cmpl</code>: Will this tax be included in <i>compliance</i> reporting?</li>

@@ -132,9 +132,9 @@ The AvaTax SDK is fully open source, and you can download source code for a myri
             </tr>
             <tr>
                 <td>Python</td>
-                <td><a href="https://pypi.python.org/pypi/PyAvaTax/1.3.8"><img src="https://img.shields.io/pypi/v/PyAvaTax.svg?style=plastic" title="PyPI" alt="PyPI"/></a></td>
-                <td><a href="https://github.com/activefrequency/pyavatax/">pyavatax</a></td>
-                <td>Supported by <a href="http://www.activefrequency.com/">Active Frequency</a></td>
+                <td><a href="https://pypi.python.org/pypi/Avalara"><img src="https://img.shields.io/pypi/v/Avalara.svg?style=plastic" title="PyPI" alt="PyPI"/></a></td>
+                <td><a href="https://travis-ci.org/avadev/AvaTax-REST-V2-Python-SDK"><img src="https://api.travis-ci.org/avadev/AvaTax-REST-V2-Python-SDK.svg?branch=master&style=plastic"></a></td>
+                <td><a class="dev-guide-link" href="https://github.com/avadev/AvaTax-REST-V2-Python-SDK">AvaTax-REST-V2-Python-SDK</a></td>
             </tr>
             <tr>
                 <td>PHP</td>

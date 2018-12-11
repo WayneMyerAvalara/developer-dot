@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.24 - Geocode Requests
+title:  Chapter 5.3.4 - Geocode Requests
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

@@ -13,9 +13,9 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/invoice-date/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-REST v2 provides the ability to <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/">commit or uncommit</a> transactions and only include the committed transactions within compliance reports.  A transaction can be committed at any time as long as there is a DocumentCode associated to it.  However, be aware that committing or uncommiting a document code commits/uncommits all transactions with the specified Document Code (<code>doc</code>).  The DocumentCode can be associated with a bill run, an invoice, a customer, or a transaction.
+REST v2 provides the ability to <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/">commit or uncommit</a> transactions and only include the committed transactions within compliance reports.  A transaction can be committed at any time as long as there is a Document Code associated to it.  However, be aware that committing or uncommiting a document code commits/uncommits all transactions with the specified Document Code (<code>doc</code>).  The Document Code can be associated with a bill run, an invoice, a customer, or a transaction.
 
-There are two ways to commit and uncommit DocumentCodes:
+Use these methods to commit and uncommit Document Codes:
 <ul class="dev-guide-list">
   <li>Commit API</li>
   <li>Commit field (<code>cmmt</code>) directly in the transaction</li>
@@ -24,7 +24,7 @@ There are two ways to commit and uncommit DocumentCodes:
 This page covers the transaction-level Commit/Uncommit process.  The Commit API can be found <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/commit-request/">here</a>.
 
 <h3>Transaction-Level Commit Example</h3>
-This example is committing DocumentCode (<code>doc</code>) "DocumentXYZ123" by setting the Commit flag (<code>cmmt</code>) to <code>true</code>.
+This example is committing Document Code (<code>doc</code>) "DocumentXYZ123" by setting the Commit flag (<code>cmmt</code>) to <code>true</code>.
 
 {% highlight json %}
 {
@@ -246,7 +246,7 @@ Taxes (<code>txs</code>) are returned as normal.
 
 
 <h3>Transaction-Level Uncommit Example</h3>
-This example is uncommitting DocumentCode (<code>doc</code>) "DocumentXYZ123" by setting the Commit flag (<code>cmmt</code>) to <code>false</code>.
+This example is uncommitting Document Code (<code>doc</code>) "DocumentXYZ123" by setting the Commit flag (<code>cmmt</code>) to <code>false</code>.
 
 {% highlight json %}
 {
@@ -468,7 +468,7 @@ Taxes (<code>txs</code>) are returned as normal.
 
 
 <h3>Commit API</h3>
-The same actions can be taken by using the <code>/api/v2/afc/Commit</code> <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/commit-request/">endpoint</a>.  Just execute the <code>Commit</code> API with the desired DocumentCode (<code>doc</code>) and Commit flag (<code>cmmt</code>) values set.
+The same actions can be taken by using the <code>/api/v2/afc/Commit</code> <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit/commit-request/">endpoint</a>.  Just execute the <code>Commit</code> API with the desired Document Code (<code>doc</code>) and Commit flag (<code>cmmt</code>) values set.
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exclusion/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>

@@ -13,8 +13,13 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/jurisdiction-determination/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
+An <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a> can contain many <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line items</a>.
+
+<h4>Note</h4>
+Multiple <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoices</a> (with multiple <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line items</a>) can be added to a transaction.  This page demonstrates multiple line items only.
+
 <h3>Simple Multi-line Invoice Example</h3>
-This invoice contains 3 simple line items.
+This invoice contains 3 simple <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line items</a>.
 
 {% highlight json %}
 {
@@ -91,7 +96,7 @@ This invoice contains 3 simple line items.
 {% endhighlight %}
 
 <h4>Response</h4>
-In this response, you'll see a few things going on:
+A few things are going on in this <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/">response</a>:
 <ul class="dev-guide-list">
   <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">Detailed taxes</a> (<code>txs</code>) for the three line items are displayed</li>
     <ul class="dev-guide-list">
@@ -99,7 +104,7 @@ In this response, you'll see a few things going on:
       <li>Line Item 002 returns 1 tax totalling 32.7</li>
       <li>Line Item 003 returns 3 taxes totalling 2.125</li>
     </ul>
-  <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">Summarized taxes</a> (<code>summ</code>) for the entire invoice are displayed - 11 taxes returned totalling 48.921528</li>
+  <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">Summarized taxes</a> (<code>summ</code>) for the entire <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a> are displayed - 11 taxes returned totalling 48.921528</li>
 </ul>
 
 <div class="panel-group">
@@ -524,7 +529,7 @@ In this response, you'll see a few things going on:
 </div>
 
 <h3>Texas Internet Tax Multi-line Invoice Example</h3>
-This example shows an invoice with 2 line items processed in <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/invoice-mode/">Invoice Mode</a> (<code>invm</code> is <code>true</code>).  
+This example shows an <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a> with 2 <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item">line items</a> processed in <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/invoice-mode/">Invoice Mode</a> (<code>invm</code> is <code>true</code>).  
 {% highlight json %}
 {
   "cmpn": {
@@ -589,7 +594,7 @@ This example shows an invoice with 2 line items processed in <a class="dev-guide
 {% endhighlight %}
 
 <h4>Response</h4>
-Again in this example, both the line item <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">detailed taxes</a> (<code>txs</code>) and the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">summarized taxes</a> (<code>summ</code>) are returned.
+Both the line item <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/detailed-tax-result/">detailed taxes</a> (<code>txs</code>) and the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/summarized-tax-result/">summarized taxes</a> (<code>summ</code>) are returned.
 
 <div class="panel-group">
   <a data-toggle="collapse" href="#collapse2">View the Response JSON</a>

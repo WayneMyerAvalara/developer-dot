@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.4 - Location
+title:  Chapter 5.1.4 - Location
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

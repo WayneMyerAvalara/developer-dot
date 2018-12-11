@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.19 - Bridge Participant Result
+title:  Chapter 5.1.19 - Bridge Participant Result
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

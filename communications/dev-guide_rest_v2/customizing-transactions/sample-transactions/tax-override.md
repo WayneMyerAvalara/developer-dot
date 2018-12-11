@@ -13,10 +13,10 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/safe-harbor-override/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-The override structure (<code>ovr</code>) allows you to change the rate of a tax in the AFC tax engine within the context of the <code>CalcTaxes</code> request.  More information on the override structure can be found <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-override/">here</a>.
+The Tax Override object (<code>ovr</code>) allows you to change the rate of a tax in the AFC tax engine within the context of the <code>CalcTaxes</code> request.  For more information, see <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/tax-override/">Tax Override</a>.
 
 <h4 id="note">Note</h4>
-Although the <code>CalcTaxes</code> request gives the user the flexibility to input Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profile</a> with a custom override file applied. This results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
+Although the <code>CalcTaxes</code> request gives the user the flexibility to input Override information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">client profile</a> with a custom override file applied. This results in better performance from the Tax Engine because your override settings are cached <i>before</i> tax calculation begins.
 
 <h3>Tax Override Example</h3>
 This example shows the use of the Tax Override (<code>ovr</code>) object.  It contains the following 2 overrides:

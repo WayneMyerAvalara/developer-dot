@@ -18,7 +18,7 @@ Exclusions allow you to specify the state(s) where you want to exclude all taxes
 If a state is excluded, Federal taxes may still apply. If a country is excluded, no taxes will apply.
 
 <h4>Note</h4>
-Although the <code>CalcTaxes</code> request gives the user the flexibility to input exclusion information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">Client Profile</a> with a custom exclusion file applied. This results in better performance from the Tax Engine because your exclusion settings are cached <i>before</i> tax calculation begins.
+Although the <code>CalcTaxes</code> request gives the user the flexibility to input exclusion information for each transaction, we recommend using a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/client-profiles/">client profile</a> with a custom exclusion file applied. This results in better performance from the Tax Engine because your exclusion settings are cached <i>before</i> tax calculation begins.
 
 <h4>Compliance Reporting Note</h4>
 Excluded tax jurisdictions will either appear as unknown or will not be included in any Transaction Service Reports (TSR) produced.

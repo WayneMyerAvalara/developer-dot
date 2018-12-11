@@ -13,21 +13,21 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/transaction-use-cases/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-There are two main components of account customizations:
+The components of client profile account customizations are:
 <ul class="dev-guide-list">
   <li><a class="dev-guide-link" href="#cust_files">Customization files</a></li>
   <li><a class="dev-guide-link" href="#config_opt">Configuration options</a></li>
 </ul>
 
-One or both types of customizations can be set on a client profile.
-
 <h3 id="cust_files">Customization Files</h3>
-Customization files allow you to change how results are returned from the AFC tax engine or customize the way the AFC tax engine interprets your <code>CalcTaxes</code> request.  There are five types of customization files:
+Customization files allow you to change how the AFC tax engine produces the results of your <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/"><code>CalcTaxes</code> request</a>.  
+
+Customization files include:
 <ul class="dev-guide-list">
-  <li>Override file</li>
+  <li>Bundle file</li>
   <li>Exclusion file</li>
   <li>Exemption file</li>
-  <li>Bundle file</li>
+  <li>Override file</li>
   <li>Nexus file (for use with Sales and Use transactions only)</li>
 </ul>
 
@@ -44,21 +44,28 @@ Customization files allow you to change how results are returned from the AFC ta
     <tbody>
       <tr>
         <td>Bundle</td>
-        <td>Bundles enable you to associate a group of transaction/service pairs with an offering, and enable you to specify the percentage of the sale amount to be applied to each pair.
-        <br/><br/>
-        When taxes are calculated for bundled transactions, the appropriate taxes are calculated for each transaction/service associated with the transaction/service type defined for the bundle.</td>
+        <td>Bundles enable you to:
+        <ol class="dev-guide-list">
+          <li>Associate a group of transaction/service pairs with an offering</li>
+          <li>Specify the percentage of the sale amount to be applied to each transaction/service pair</li>
+        </ol>
+        <br/>
+        When taxes are calculated for bundled transactions, the appropriate taxes are calculated for each transaction/service associated with the transaction/service type defined for the bundle</td>
         <td>.bdl</td>
         <td>AFC Manager (AFC Bundler component)</td>
       </tr>
       <tr>
         <td>Exclusion</td>
-        <td>Indicates countries or states where no tax should be applied</td>
+        <td>Removes a jurisdiction from consideration as the taxing jurisdiction</td>
         <td>.exc</td>
         <td>AFC Manager</td>
       </tr>
       <tr>
         <td>Exemption</td>
-        <td>Indicates jurisdictions, tax types, and tax levels where taxes should be exempted</td>
+        <td>Removes the tax liability from the specified jurisdiction
+        <br/><br/>
+        Used when you have an exemption certification that allows you to be exempted from certain taxes for a given jurisdiction or group of jurisdictions
+        </td>
         <td>.exc</td>
         <td>AFC Manager</td>
       </tr>
@@ -70,7 +77,7 @@ Customization files allow you to change how results are returned from the AFC ta
       </tr>
       <tr>
         <td>Nexus</td>
-        <td>Indicates the jurisdictions that require you to calculate sales and use taxes</td>
+        <td>Indicates the jurisdictions that require you to calculate Sales and Use (SAU) taxes</td>
         <td>.nex</td>
         <td>AFC Manager - Sales and Use Viewer</td>
       </tr>
@@ -93,36 +100,40 @@ Configuration options are used to modify the operation of the AFC tax engine.
       <tr>
         <td>Return Non-Billable</td>
         <td><ul class="dev-guide-list">
-              <li>False (<span class="t5">default</span>)</li>
+              <li>False</li>
               <li>True</li>
             </ul>
         </td>
-        <td>Non-billable items are compliance-only taxes or fees that are used for filing and are not passed on to the user. This option allows you to specify whether non-billable items should be included in the tax table returned by the tax calculation API functions in AFC or not.</td>
+        <td>Non-billable taxes are compliance-only taxes or fees that are used for filing and are not passed on to your user.  This option allows you to specify if non-billable items are included (Return Non-Billable is <code>true</code>) or excluded (Return Non-Billable is <code>false</code>) in the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-response/"><code>CalcTaxes</code> response</a></td>
       </tr>
       <tr>
         <td>Safe Harbor TAM Override(s)</td>
         <td><ul class="dev-guide-list">
-              <li>Cellular TAM Override</li>
-              <li>VoIP TAM Override</li>
-              <li>Paging TAM Override</li>
+              <li>Cellular</li>
+              <li>VoIP</li>
+              <li>Paging</li>
             </ul>
         </td>
-        <td>Safe Harbor TAM Override configuration settings allow traffic study values to be applied for a given session or account.
-The results of percentages from a traffic study can be applied by administering traffic study TAM overrides. The TAM values for Cellular, VoIP and Paging are adjusted to reflect the percentages in the traffic study.  While all all three types of TAM overrides can be set, it is possible to set only one or two of the options (Cellular, VoIP, or Paging).</td>
+        <td>Safe Harbor TAM Override configuration settings allow traffic study values to be applied to all transactions processed while using a client profile containing this configuration.  The TAM values for Cellular, VoIP, and Paging are adjusted to reflect the percentages calculated in a traffic study</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 
-<h3>Requesting a new client profile or changes to an existing client profile</h3>
-Contact <a class="dev-guide-link" href="mailto:CommunicationSupport@avalara.com">CommunicationSupport@avalara.com</a> to request a new client profile for your account.
-<ul class="dev-guide-list">
-  <li>Request the configuration option updates required and any overrides, exclusions, exemptions, or bundles needed.  Attach any existing customization files to the email.</li>
-  <li>Include instructions as to whether the client profile should be applied to Sandbox for testing purposes, Production, or both environments.</li>
+<h3 id="request">Requesting a new client profile or changes to an existing client profile</h3>
+Contact <a class="dev-guide-link" href="mailto:CommunicationSupport@avalara.com">CommunicationSupport@avalara.com</a>:
+<ol class="dev-guide-list">
+  <li>Request the customization files and configurations.  Attach existing <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/customizing-transactions/account-customizations/">customization files</a> to the email</li>
+  <li>Include the environment(s)</li>
+  <ul class="dev-guide-list">
+    <li><a class="dev-guide-link" href="https://communicationsua.avalara.net">Sandbox</a></li>
+    <li><a class="dev-guide-link" href="https://communications.avalara.net">Production</a></li>
+    <li>Both environments</li>
+  </ul>
   <li>Include the <code>client_profile_id</code> to be updated if changes are needed to an existing client profile</li>
-  <li>The account could take up to 24 hours to refresh with the new changes</li>
-</ul>
+  <li>The client profiles could take up to 24 hours to become available once applied</li>
+</ol>
 
 
 <ul class="pager">

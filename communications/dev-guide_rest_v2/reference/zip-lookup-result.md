@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.22 - Zip Lookup Result
+title:  Chapter 5.3.2 - Zip Lookup Result
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

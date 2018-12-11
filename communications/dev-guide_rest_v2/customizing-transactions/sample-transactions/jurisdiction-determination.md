@@ -13,357 +13,68 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/exemption/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
-Set the jurisdiction in the BillTo object (<code>bill</code>) inside the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">Invoice</a> object.  There are a number of ways to set the jurisdiction, including:
+Jurisdictions are set on the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a> and the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line item</a> for a <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/"><code>CalcTaxes</code> request</a>.
+
+<div class="mobile-table">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Location Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>bill</code></td>
+            <td>BillTo</td>
+            <td>Location used to specify where the transaction is to be billed
+            <br/><br/>
+            Required on the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a>, but can also be set on the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line item</a> (overrides BillTo set on the invoice)
+            </td>
+        </tr>
+        <tr>
+            <td><code>from</code></td>
+            <td>From (Origination)</td>
+            <td>Specifies the point of origin for the line item.  Defaults to the BillTo location if not set</td>
+        </tr>
+        <tr>
+            <td><code>to</code></td>
+            <td>From (Destination)</td>
+            <td>Specifies the point of termination for the line item.  Defaults to the BillTo location if not set</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+See <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">Location</a> for more information.
+
+A jurisdiction is set with one of these jurisdiction types:
 <ul class="dev-guide-list">
-    <li><b>PCode</b> (<code>pcd</code>): persisted numeric identifer for a taxing jurisdiction</li>
-    <li><b>Address</b>: When using an address to specify the taxing jurisdiction, the more complete the information provided the more accurate the lookup will be. For most foreign nations, other than Canada and Brazil, the Country ISO is sufficient for taxation purposes. For USA and Canada, at a minimum the Country, State and Zip Code must be provided.
-      <ul class="dev-guide-list">
-        <li>Street Address (<code>addr</code>), Country (<code>ctry</code>), State (<code>st</code>), County (<code>cnty</code>), City (<code>city</code>), and/or Postal Code (<code>zip</code>) lookup using geocoding (<code>geo</code> = <code>true</code>)</li>
-        <li>Country (<code>ctry</code>), State (<code>st</code>), County (<code>cnty</code>), City (<code>city</code>), and/or Postal Code (<code>zip</code>) lookup without using geocoding (<code>geo</code> = <code>false</code>)</li>
-      </ul>
-    </li>
-    <li><b>FIPS</b> (<code>fips</code>): standardized set of numeric or alphabetic codes issued by the National Institute of Standards and Technology (NIST) to ensure uniform identification of geographic entities through all federal government agencies</li>
-    <li><b>NPANXX</b> (<code>npa</code>): 6 digit numbers consisting of the area code and second 3 digits of a North American dialing plan phone number</li>
+    <li><b>PCode</b> (<code>pcd</code>): Persisted numeric identifer for a taxing jurisdiction</li>
+    <li><b>Address</b>: Specify a Country (<code>ctry</code>), State (<code>st</code>), County (<code>cnty</code>), City (<code>city</code>), and/or Postal Code (<code>zip</code>).  Set the Street Address (<code>addr</code>) if you want to geocode the address (<code>geo</code> = <code>true</code>)</li>
+    <ul class="dev-guide-list">
+      <li>The more complete the address information provided, the more accurate the results are</li>
+      <li>Country ISO is sufficient for taxation purposes for most foreign nations other than USA, Canada, and Brazil</li>
+      <li>Country (<code>ctry</code>), State (<code>st</code>), and Postal Code (<code>zip</code>) are required for USA and Canada (at a minimum)</li>
+    </ul>
+    <li><b>FIPS</b> (<code>fips</code>): Standardized set of numeric or alphabetic codes issued by the National Institute of Standards and Technology (NIST) to ensure uniform identification of geographic entities through all federal government agencies</li>
+    <li><b>NPANXX</b> (<code>npa</code>): 6-digit numbers consisting of the area code and second 3 digits of a North American dialing plan phone number</li>
 </ul>
 
-There are a couple things to keep in mind if using the Geocoding functionality (<code>geo</code> set to <code>true</code>):
+Keep these points in mind if using the Geocoding functionality (<code>geo</code> = <code>true</code>):
 <ol class="dev-guide-list">
   <li>The geocoding is slower, but provides a more accurate jurisdiction</li>
-  <li>If the geocoding process fails, the entire <code>CalcTaxes</code> request fails as well</li>
+  <li>If the geocoding process fails, the entire <code>CalcTaxes</code> request fails</li>
 </ol>
 
 <h4>Note</h4>
-When specifying jurisdictions outside of the United States via country/state/county/city lookup, be sure to pass the Country ISO code.  If the country code is not set, errors are generated.  For example, use <code>CAN</code> for Canada or <code>IND</code> for India.
+When specifying jurisdictions outside of the United States via country/state/county/city lookup, be sure to pass the Country ISO (<code>ctry</code>).  For example, use <code>CAN</code> for Canada or <code>IND</code> for India.  If the Country ISO is not set on a foreign country, errors are generated.
 
-More information regarding the <code>Location</code> object can be found <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">here</a>.
-
-<h3>Canadian Tax Request Example</h3>
-This example specifies that the jurisdiction for this transaction, entered in the BillTo <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">location</a> object (<code>bill</code>) is Montreal, QC.
-{% highlight json %}
-{
-  "cmpn": {
-    "bscl": 0,
-    "svcl": 0,
-    "fclt": false,
-    "frch": false,
-    "reg": false
-  },
-  "inv": [
-    {
-      "doc": "TEST-VOIP INVOICE 2017.12.26:12.02 AVA",
-      "cmmt": false,
-      "bill": {
-        "ctry": "CAN",
-        "int": true,
-        "geo": false,
-        "city": "Montreal",
-        "st": "PQ",
-        "zip": "H1A-0A1"
-      },
-      "cust": 0,
-      "lfln": false,
-      "date": "2018-06-01T12:00:00Z",
-      "itms": [
-        {
-          "ref": "Line Item 001 - VoIP/Access Charge",
-          "chg": 100,
-          "line": 0,
-          "sale": 1,
-          "incl": false,
-          "tran": 19,
-          "serv": 6,
-          "dbt": false,
-          "adj": false
-        },
-        {
-          "ref": "Line Item 002 - VoIP/Lines",
-          "chg": 0,
-          "line": 10,
-          "sale": 1,
-          "incl": false,
-          "tran": 19,
-          "serv": 21,
-          "dbt": false,
-          "adj": false
-        },
-        {
-          "ref": "Line Item 003 - VoIP/Equip Rental",
-          "chg": 25,
-          "line": 0,
-          "sale": 1,
-          "incl": false,
-          "tran": 19,
-          "serv": 37,
-          "dbt": false,
-          "adj": false
-        }
-      ],
-      "invm": true,
-      "dtl": true,
-      "summ": true,
-      "opt": [
-        {
-          "key": "1",
-          "val": "Canada VoIP Sample Line Items Invoice ABC-ZZZ"
-        }
-      ]
-    }
-  ]
-}
-{% endhighlight %}
-
-<h4>Response</h4>
-Taxes returned are for Quebec (tax level <code>lvl</code> 1) and Canada (tax level <code>lvl</code> 0).
-
-<div class="panel-group">
-  <a data-toggle="collapse" href="#collapse1">View the Response JSON</a>
-  <div id="collapse1" class="panel-collapse collapse">
-    <div class="panel-body">
-{% highlight json %}
-{
-  "inv": [
-    {
-      "doc": "TEST-VOIP INVOICE 2017.12.26:12.02 AVA",
-      "itms": [
-        {
-          "ref": "Line Item 001 - VoIP/Access Charge",
-          "txs": [
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 100,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Quebec Sales Tax (QST)",
-              "exm": 0,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4882600,
-              "rate": 0.09975,
-              "sur": false,
-              "tax": 9.975000000000001,
-              "lvl": 1,
-              "tid": 69
-            },
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 100,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Goods and Service Tax (GST)",
-              "exm": 0,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4482200,
-              "rate": 0.05,
-              "sur": false,
-              "tax": 5,
-              "lvl": 0,
-              "tid": 66
-            }
-          ]
-        },
-        {
-          "ref": "Line Item 002 - VoIP/Lines",
-          "txs": [
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 0,
-              "calc": 4,
-              "cat": "E-911 CHARGES",
-              "cid": 7,
-              "name": "E-911",
-              "exm": 0,
-              "lns": 10,
-              "min": 0,
-              "pcd": 4945800,
-              "rate": 0.46,
-              "sur": false,
-              "tax": 4.6000000000000005,
-              "lvl": 1,
-              "tid": 10
-            },
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 4.140000000000001,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Quebec Sales Tax (QST)",
-              "exm": 0.45999999999999996,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4882600,
-              "rate": 0.09975,
-              "sur": false,
-              "tax": 0.4129650000000001,
-              "lvl": 1,
-              "tid": 69
-            },
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 4.140000000000001,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Goods and Service Tax (GST)",
-              "exm": 0.45999999999999996,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4482200,
-              "rate": 0.05,
-              "sur": false,
-              "tax": 0.20700000000000005,
-              "lvl": 0,
-              "tid": 66
-            }
-          ]
-        },
-        {
-          "ref": "Line Item 003 - VoIP/Equip Rental",
-          "txs": [
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 25,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Quebec Sales Tax (QST)",
-              "exm": 0,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4882600,
-              "rate": 0.09975,
-              "sur": false,
-              "tax": 2.4937500000000004,
-              "lvl": 1,
-              "tid": 69
-            },
-            {
-              "bill": true,
-              "cmpl": true,
-              "tm": 25,
-              "calc": 1,
-              "cat": "SALES AND USE TAXES",
-              "cid": 1,
-              "name": "Goods and Service Tax (GST)",
-              "exm": 0,
-              "lns": 0,
-              "min": 0,
-              "pcd": 4482200,
-              "rate": 0.05,
-              "sur": false,
-              "tax": 1.25,
-              "lvl": 0,
-              "tid": 66
-            }
-          ]
-        }
-      ],
-      "summ": [
-        {
-          "max": 2147483647,
-          "min": 0,
-          "tchg": 125,
-          "calc": 1,
-          "cat": "SALES AND USE TAXES",
-          "cid": 1,
-          "name": "Quebec Sales Tax (QST)",
-          "exm": 0,
-          "lns": 0,
-          "pcd": 4882600,
-          "rate": 0.09975,
-          "sur": false,
-          "tax": 12.468750000000002,
-          "lvl": 1,
-          "tid": 69
-        },
-        {
-          "max": 2147483647,
-          "min": 0,
-          "tchg": 125,
-          "calc": 1,
-          "cat": "SALES AND USE TAXES",
-          "cid": 1,
-          "name": "Goods and Service Tax (GST)",
-          "exm": 0,
-          "lns": 0,
-          "pcd": 4482200,
-          "rate": 0.05,
-          "sur": false,
-          "tax": 6.25,
-          "lvl": 0,
-          "tid": 66
-        },
-        {
-          "max": 2147483647,
-          "min": 0,
-          "tchg": 0,
-          "calc": 4,
-          "cat": "E-911 CHARGES",
-          "cid": 7,
-          "name": "E-911",
-          "exm": 0,
-          "lns": 10,
-          "pcd": 4945800,
-          "rate": 0.46,
-          "sur": false,
-          "tax": 4.6000000000000005,
-          "lvl": 1,
-          "tid": 10
-        },
-        {
-          "max": 2147483647,
-          "min": 0,
-          "tchg": 4.140000000000001,
-          "calc": 1,
-          "cat": "SALES AND USE TAXES",
-          "cid": 1,
-          "name": "Quebec Sales Tax (QST)",
-          "exm": 0.45999999999999996,
-          "lns": 0,
-          "pcd": 4882600,
-          "rate": 0.09975,
-          "sur": false,
-          "tax": 0.4129650000000001,
-          "lvl": 1,
-          "tid": 69
-        },
-        {
-          "max": 2147483647,
-          "min": 0,
-          "tchg": 4.140000000000001,
-          "calc": 1,
-          "cat": "SALES AND USE TAXES",
-          "cid": 1,
-          "name": "Goods and Service Tax (GST)",
-          "exm": 0.45999999999999996,
-          "lns": 0,
-          "pcd": 4482200,
-          "rate": 0.05,
-          "sur": false,
-          "tax": 0.20700000000000005,
-          "lvl": 0,
-          "tid": 66
-        }
-      ]
-    }
-  ]
-}
-{% endhighlight %}
-    </div>
-  </div>
-</div>
+See <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">Location</a> for more information.
 
 <h3 id="us_geo">United States Tax Request using Geocoding Example</h3>
-Geocoding functionality is being used in this example through the use of <code>geo</code> being set to <code>true</code> and an address (<code>addr</code>), city (<code>city</code>), state (<code>st</code>), postal code (<code>zip</code>), and country (<code>ctry</code>) being specified.
+Geocoding functionality is being used in this example by setting <code>geo</code> to <code>true</code> and specifying an address (<code>addr</code>), city (<code>city</code>), state (<code>st</code>), postal code (<code>zip</code>), and country (<code>ctry</code>).
 
 {% highlight json %}
 {
@@ -442,8 +153,8 @@ Geocoding functionality is being used in this example through the use of <code>g
 Federal, State, and County taxes are returned based upon the geocoding request.
 
 <div class="panel-group">
-  <a data-toggle="collapse" href="#collapse2">View the Response JSON</a>
-  <div id="collapse2" class="panel-collapse collapse">
+  <a data-toggle="collapse" href="#collapse1">View the Response JSON</a>
+  <div id="collapse1" class="panel-collapse collapse">
     <div class="panel-body">
 
 {% highlight json %}
@@ -826,28 +537,353 @@ Federal, State, and County taxes are returned based upon the geocoding request.
   </div>
 </div>
 
+<h3>Canadian Tax Request Example</h3>
+This example sets the BillTo <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/location/">location</a> (<code>bill</code>) to Montreal, QC.
+{% highlight json %}
+{
+  "cmpn": {
+    "bscl": 0,
+    "svcl": 0,
+    "fclt": false,
+    "frch": false,
+    "reg": false
+  },
+  "inv": [
+    {
+      "doc": "TEST-VOIP INVOICE 2017.12.26:12.02 AVA",
+      "cmmt": false,
+      "bill": {
+        "ctry": "CAN",
+        "int": true,
+        "geo": false,
+        "city": "Montreal",
+        "st": "PQ",
+        "zip": "H1A-0A1"
+      },
+      "cust": 0,
+      "lfln": false,
+      "date": "2018-06-01T12:00:00Z",
+      "itms": [
+        {
+          "ref": "Line Item 001 - VoIP/Access Charge",
+          "chg": 100,
+          "line": 0,
+          "sale": 1,
+          "incl": false,
+          "tran": 19,
+          "serv": 6,
+          "dbt": false,
+          "adj": false
+        },
+        {
+          "ref": "Line Item 002 - VoIP/Lines",
+          "chg": 0,
+          "line": 10,
+          "sale": 1,
+          "incl": false,
+          "tran": 19,
+          "serv": 21,
+          "dbt": false,
+          "adj": false
+        },
+        {
+          "ref": "Line Item 003 - VoIP/Equip Rental",
+          "chg": 25,
+          "line": 0,
+          "sale": 1,
+          "incl": false,
+          "tran": 19,
+          "serv": 37,
+          "dbt": false,
+          "adj": false
+        }
+      ],
+      "invm": true,
+      "dtl": true,
+      "summ": true,
+      "opt": [
+        {
+          "key": "1",
+          "val": "Canada VoIP Sample Line Items Invoice ABC-ZZZ"
+        }
+      ]
+    }
+  ]
+}
+{% endhighlight %}
+
+<h4>Response</h4>
+Taxes returned are for Quebec (tax level <code>lvl</code> 1) and Canada (tax level <code>lvl</code> 0).
+
+<div class="panel-group">
+  <a data-toggle="collapse" href="#collapse2">View the Response JSON</a>
+  <div id="collapse2" class="panel-collapse collapse">
+    <div class="panel-body">
+{% highlight json %}
+{
+  "inv": [
+    {
+      "doc": "TEST-VOIP INVOICE 2017.12.26:12.02 AVA",
+      "itms": [
+        {
+          "ref": "Line Item 001 - VoIP/Access Charge",
+          "txs": [
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 100,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Quebec Sales Tax (QST)",
+              "exm": 0,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4882600,
+              "rate": 0.09975,
+              "sur": false,
+              "tax": 9.975000000000001,
+              "lvl": 1,
+              "tid": 69
+            },
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 100,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Goods and Service Tax (GST)",
+              "exm": 0,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4482200,
+              "rate": 0.05,
+              "sur": false,
+              "tax": 5,
+              "lvl": 0,
+              "tid": 66
+            }
+          ]
+        },
+        {
+          "ref": "Line Item 002 - VoIP/Lines",
+          "txs": [
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 0,
+              "calc": 4,
+              "cat": "E-911 CHARGES",
+              "cid": 7,
+              "name": "E-911",
+              "exm": 0,
+              "lns": 10,
+              "min": 0,
+              "pcd": 4945800,
+              "rate": 0.46,
+              "sur": false,
+              "tax": 4.6000000000000005,
+              "lvl": 1,
+              "tid": 10
+            },
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 4.140000000000001,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Quebec Sales Tax (QST)",
+              "exm": 0.45999999999999996,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4882600,
+              "rate": 0.09975,
+              "sur": false,
+              "tax": 0.4129650000000001,
+              "lvl": 1,
+              "tid": 69
+            },
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 4.140000000000001,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Goods and Service Tax (GST)",
+              "exm": 0.45999999999999996,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4482200,
+              "rate": 0.05,
+              "sur": false,
+              "tax": 0.20700000000000005,
+              "lvl": 0,
+              "tid": 66
+            }
+          ]
+        },
+        {
+          "ref": "Line Item 003 - VoIP/Equip Rental",
+          "txs": [
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 25,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Quebec Sales Tax (QST)",
+              "exm": 0,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4882600,
+              "rate": 0.09975,
+              "sur": false,
+              "tax": 2.4937500000000004,
+              "lvl": 1,
+              "tid": 69
+            },
+            {
+              "bill": true,
+              "cmpl": true,
+              "tm": 25,
+              "calc": 1,
+              "cat": "SALES AND USE TAXES",
+              "cid": 1,
+              "name": "Goods and Service Tax (GST)",
+              "exm": 0,
+              "lns": 0,
+              "min": 0,
+              "pcd": 4482200,
+              "rate": 0.05,
+              "sur": false,
+              "tax": 1.25,
+              "lvl": 0,
+              "tid": 66
+            }
+          ]
+        }
+      ],
+      "summ": [
+        {
+          "max": 2147483647,
+          "min": 0,
+          "tchg": 125,
+          "calc": 1,
+          "cat": "SALES AND USE TAXES",
+          "cid": 1,
+          "name": "Quebec Sales Tax (QST)",
+          "exm": 0,
+          "lns": 0,
+          "pcd": 4882600,
+          "rate": 0.09975,
+          "sur": false,
+          "tax": 12.468750000000002,
+          "lvl": 1,
+          "tid": 69
+        },
+        {
+          "max": 2147483647,
+          "min": 0,
+          "tchg": 125,
+          "calc": 1,
+          "cat": "SALES AND USE TAXES",
+          "cid": 1,
+          "name": "Goods and Service Tax (GST)",
+          "exm": 0,
+          "lns": 0,
+          "pcd": 4482200,
+          "rate": 0.05,
+          "sur": false,
+          "tax": 6.25,
+          "lvl": 0,
+          "tid": 66
+        },
+        {
+          "max": 2147483647,
+          "min": 0,
+          "tchg": 0,
+          "calc": 4,
+          "cat": "E-911 CHARGES",
+          "cid": 7,
+          "name": "E-911",
+          "exm": 0,
+          "lns": 10,
+          "pcd": 4945800,
+          "rate": 0.46,
+          "sur": false,
+          "tax": 4.6000000000000005,
+          "lvl": 1,
+          "tid": 10
+        },
+        {
+          "max": 2147483647,
+          "min": 0,
+          "tchg": 4.140000000000001,
+          "calc": 1,
+          "cat": "SALES AND USE TAXES",
+          "cid": 1,
+          "name": "Quebec Sales Tax (QST)",
+          "exm": 0.45999999999999996,
+          "lns": 0,
+          "pcd": 4882600,
+          "rate": 0.09975,
+          "sur": false,
+          "tax": 0.4129650000000001,
+          "lvl": 1,
+          "tid": 69
+        },
+        {
+          "max": 2147483647,
+          "min": 0,
+          "tchg": 4.140000000000001,
+          "calc": 1,
+          "cat": "SALES AND USE TAXES",
+          "cid": 1,
+          "name": "Goods and Service Tax (GST)",
+          "exm": 0.45999999999999996,
+          "lns": 0,
+          "pcd": 4482200,
+          "rate": 0.05,
+          "sur": false,
+          "tax": 0.20700000000000005,
+          "lvl": 0,
+          "tid": 66
+        }
+      ]
+    }
+  ]
+}
+{% endhighlight %}
+    </div>
+  </div>
+</div>
+
 <h3>Jurisdiction Determination using PCode, NPANXX, or FIPS</h3>
-Using the <a class="dev-guide-link" href="#us_geo">sample above</a>, update the BillTo object (<code>bill</code>) as follows to determine jurisdiction based on PCode, NPANXX, or FIPS.  These fields can also be used in the From (<code>from</code>) and/or To (<code>to</code>) on a <a href="/communications/dev-guide_rest_v2/reference/line-item/">line item</a>.
+If you have a PCode (<code>pcd</code>), NPANXX (<code>npa</code>), or FIPS (<code>fips</code>) instead of an address, set these fields in BillTo (<code>bill</code>), From (<code>from</code>), or To (<code>to</code>) (these examples demonstrate BillTo, but the same applies to From and To):
 
 <h4>PCode</h4>
 {% highlight json %}
- "bill": {
-        "pcd": 390800
-      }
+"bill": {
+  "pcd": 390800
+}
 {% endhighlight %}
 
 <h4>NPANXX</h4>
 {% highlight json %}
- "bill": {
-        "npa": 415226
-      }
+"bill": {
+  "npa": 415226
+}
 {% endhighlight %}
 
 <h4>FIPS</h4>
 {% highlight json %}
- "bill": {
-        "fips": "0608500380"
-      }
+"bill": {
+  "fips": "0608500380"
+}
 {% endhighlight %}
 
 

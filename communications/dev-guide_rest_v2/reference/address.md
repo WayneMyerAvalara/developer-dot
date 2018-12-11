@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.26 - Address
+title:  Chapter 5.3.6 - Address
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -10,6 +10,7 @@ disqus: 0
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/geocode-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
+  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/service-info/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
 <h3>Address</h3>
@@ -59,4 +60,5 @@ The <code>Address</code> object contains the <b>CASS address information</b> fro
 
 <ul class="pager">
   <li class="previous"><a href="/communications/dev-guide_rest_v2/reference/geocode-result/"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a></li>
+  <li class="next"><a href="/communications/dev-guide_rest_v2/reference/service-info/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>

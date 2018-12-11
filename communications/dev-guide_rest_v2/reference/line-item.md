@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.5 - Line Item
+title:  Chapter 5.1.5 - Line Item
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference

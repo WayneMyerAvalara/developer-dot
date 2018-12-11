@@ -93,7 +93,7 @@ doctype: use_cases
                         <!-- loop thru addresses -->
                         {% for address in site.data.demo_page.addresses %}
                             <label class="demo-label-container">
-                                <input name="address" type="radio" value="{{ address.value }}" lat="{{ address.lat }}" long="{{ address.long }}" class="demo-radio" addressType="{{ address.type }}"/>
+                                <input name="address" type="radio" value="{{ address.value }}" lat="{{ address.lat }}" long="{{ address.long }}" class="demo-radio" addressType="{{ address.type }}" country="{{ address.country }}"/>
                                 <span class="demo-label"> {{ address.city }}</span>
                                 <br>
                                 <i class="glyphicon glyphicon-map-marker demo-city-marker"></i> 
@@ -120,8 +120,8 @@ doctype: use_cases
                         <!-- loop thru products -->
                         {% for product in site.data.demo_page.products %}
                             <label class="demo-label demo-label-container">
-                                <input value="{{ product.taxCode }}" name="product" id="{{ product.inputId }}" type="checkbox" description="{{ product.name }}" class="demo-radio" {{ product.checked }}/>
-                                <input value="{{ product.value }}" type="text" id="{{ product.inputId }}-amount" hsCode="{{ product.hsCode }}" style="width: 50px;">
+                                <input value="{{ product.taxCode }}" name="product" id="{{ product.inputId }}" type="checkbox" description="{{ product.name }}" hsCodeToUs="{{ product.hsCodeToUs }}" hsCodeToUk="{{ product.hsCodeToUk }}" hsCodeToBr="{{ product.hsCodeToBr }}" hsCodeToIn="{{ product.hsCodeToIn }}" mass="{{ product.mass }}" unit="{{ product.unit }}"  class="demo-radio" {{ product.checked }}/>
+                                <input value="{{ product.value }}" type="text" id="{{ product.inputId }}-amount"  style="width: 50px;">
                                 <span class="demo-label"> {{ product.name }} 
                                 {% if product.subLabel %}
                                     <i>{{ product.subLabel }}</i>
@@ -143,7 +143,7 @@ doctype: use_cases
                         <!-- loop thru addresses -->
                         {% for address in site.data.demo_page.addresses %}
                             <label class="demo-label-container">
-                                <input name="srcAddress" type="radio" value="{{ address.value }}" lat="{{ address.lat }}" long="{{ address.long }}" class="demo-radio" addressType="{{ address.type }}"/>
+                                <input name="srcAddress" type="radio" value="{{ address.value }}" lat="{{ address.lat }}" long="{{ address.long }}" class="demo-radio" addressType="{{ address.type }}" country="{{ address.country }}"/>
                                 <span class="demo-label"> {{ address.city }}</span>
                                 <br>
                                 <i class="glyphicon glyphicon-map-marker demo-city-marker"></i> 

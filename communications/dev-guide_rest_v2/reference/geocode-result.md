@@ -1,6 +1,6 @@
 ---
 layout: page
-title:  Chapter 5.25 - Geocode Result
+title:  Chapter 5.3.5 - Geocode Result
 product: communications
 doctype: comms_rest_v2_dev_guide
 chapter: reference
@@ -39,7 +39,7 @@ The <code>geocodeResult</code> object contains a list of <b>geocoding results</b
         </tr>
         <tr>
             <td><code>cBlk</code></td>
-            <td><code>[int]</code> Census Block</td>
+            <td><code>[int]</code> Census Block Group</td>
         </tr>
         <tr>
             <td><code>cTrc</code></td>

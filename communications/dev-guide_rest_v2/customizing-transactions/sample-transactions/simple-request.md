@@ -13,8 +13,10 @@ disqus: 0
   <li class="next"><a href="/communications/dev-guide_rest_v2/customizing-transactions/sample-transactions/multi-line-request/">Next<i class="glyphicon glyphicon-chevron-right"></i></a></li>
 </ul>
 
+The simplest <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-request/"><code>CalcTaxes</code> request</a> in Communications REST v2 is 1 <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item/">line item</a> contained within 1 <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice/">invoice</a>.
+
 <h3>Simple Request Example</h3>
-This is an example of a simple request containing an invoice and 1 line item.  It is setting all of the <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/calculate-taxes/required-fields/">required fields</a>, plus a charge (<code>chg</code>) of 100 and the number of lines (<code>line</code>) to 10.
+This is an example of a simple request containing an invoice and 1 line item.  All <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/calculate-taxes/required-fields/">required fields</a> are set, plus a charge (<code>chg</code>) of 100 and a lines count (<code>line</code>) of 10.
 
 {% highlight json %}
 {
@@ -130,7 +132,12 @@ This transaction returns 3 taxes (<code>txs</code>), totalling 19.640015.
 
 
 <h3>Single Line Item Example</h3>
-This sample contains a little more detail than the previous example, still with one line item and some additional information such as an <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/key-value-pair">optional field</a>.
+This example contains one line item and some additional information, including:
+<ul class="dev-guide-list">
+  <li><a class="dev-guide-link" href="/communications/dev-guide_rest_v2/commit-uncommit">Commit</a> details</li>
+  <li>An <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/key-value-pair">optional field</a></li>
+  <li>Additional <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/invoice">Invoice</a> and <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/line-item">Line Item</a> fields</li>
+</ul>
 
 {% highlight json %}
 {
@@ -185,7 +192,7 @@ This sample contains a little more detail than the previous example, still with 
 {% endhighlight %}
 
 <h4>Response</h4>
-In this case, 8 taxes (<code>txs</code>) are returned, totalling 38.100488.
+In this <a class="dev-guide-link" href="/communications/dev-guide_rest_v2/reference/calc-taxes-response">response</a>, 8 taxes (<code>txs</code>) are returned, totalling 38.100488.
 
 <div class="panel-group">
   <a data-toggle="collapse" href="#collapse2">View the Response JSON</a>

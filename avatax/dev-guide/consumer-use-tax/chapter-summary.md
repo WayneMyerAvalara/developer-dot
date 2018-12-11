@@ -16,7 +16,7 @@ disqus: 1
 In summary, you should be able to:
 <ul class="dev-guide-list">
   <li>Identify the difference between Consumer Use Tax and Sellers Use tax.</li>
-  <li>Calculate tax correctly on a Purchase Order.</li>
+  <li>Calculate tax correctly on purchase orders.</li>
   <li>Calculate tax on a vendor invoice that does not have tax.</li>
   <li>Verify the tax on a vendor invoice and make an informed decision recording the liability.</li>
 </ul>

@@ -885,6 +885,11 @@ Also see [SOAP Error Codes](/avatax/common-errors) for error messages defined in
 			<td>Your IP address has not been approved.</td>
 		</tr>		
         <tr>
+			<td>610</td>
+			<td><a href="OfferCodeAlreadyApplied">OfferCodeAlreadyApplied</a></td>
+			<td>The offer code has already been applied to this account.</td>
+		</tr>		
+        <tr>
 			<td>700</td>
 			<td><a href="InvalidDocumentStatusForRefund">InvalidDocumentStatusForRefund</a></td>
 			<td>The AvaTax Refund API is only available on committed documents.</td>
